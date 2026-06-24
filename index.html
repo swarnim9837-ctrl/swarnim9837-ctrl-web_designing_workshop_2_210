@@ -1,88 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
 
-  <title>DOM Manipulation and Event Handling</title>
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  />
 
-  <style>
-
-    body{
-      font-family: Arial, sans-serif;
-      text-align: center;
-      background-color: #f2f2f2;
-      padding: 30px;
-    }
-
-    .container{
-      background: white;
-      padding: 20px;
-      border-radius: 10px;
-      width: 60%;
-      margin: auto;
-      box-shadow: 0px 0px 10px gray;
-    }
-
-    h1{
-      color: rgb(34, 34, 78);
-    }
-
-    p{
-      font-size: 18px;
-      color: #333;
-    }
-
-    input{
-      padding: 10px;
-      width: 60%;
-      margin-top: 10px;
-    }
-
-    button{
-      padding: 10px 15px;
-      margin: 10px 5px;
-      border: none;
-      background-color: rgb(214, 16, 128);
-      color: white;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover{
-      background-color: blue;
-    }
-
-  </style>
+  <title>React JSX and Props Experiment</title>
 </head>
 
 <body>
 
-  <div class="container">
+  <!-- React Root Element -->
+  <div id="root"></div>
 
-    <h1 id="heading">DOM Manipulation using JavaScript</h1>
-
-    <p id="para">
-      This paragraph content will change dynamically using JavaScript events.
-    </p>
-
-    <input type="text" id="userInput" placeholder="Enter new heading text">
-
-    <br>
-
-    <button id="changeTextBtn">Change Heading</button>
-
-    <button id="colorBtn">Change Background</button>
-
-    <button id="fontBtn">Increase Font Size</button>
-
-    <button id="toggleBtn">Show / Hide Paragraph</button>
-
-    <button id="resetBtn">Reset</button>
-
-  </div>
-
-  <script src="script.js"></script>
+  <!-- Main React File -->
+  <script
+    type="module"
+    src="/src/main.jsx"
+  ></script>
 
 </body>
+
 </html>
