@@ -1,57 +1,81 @@
-import React from "react";
+import React, { useState } from "react";
 
-// Student Component
-function Student(props) {
+function App() {
+
+  // State Variable
+  const [count, setCount] = useState(0);
+
+  // Increment Function
+  const increment = () => {
+    setCount(count + 1);
+  };
+
+  // Decrement Function
+  const decrement = () => {
+    setCount(count - 1);
+  };
+
+  // Reset Function
+  const reset = () => {
+    setCount(0);
+  };
+
   return (
+
     <div
       style={{
-        border: "2px solid black",
-        padding: "15px",
-        margin: "15px",
-        borderRadius: "10px",
-        backgroundColor: "#f2f2f2",
+        textAlign: "center",
+        marginTop: "100px",
+        fontFamily: "Arial"
       }}
     >
-      <h2>Student Details</h2>
 
-      <p>
-        <b>Name:</b> {props.name}
-      </p>
+      <h1>Counter Application using useState Hook</h1>
 
-      <p>
-        <b>Course:</b> {props.course}
-      </p>
+      <h2>Counter Value: {count}</h2>
 
-      <p>
-        <b>Marks:</b> {props.marks}
-      </p>
-    </div>
-  );
-}
+      <button
+        onClick={increment}
+        style={{
+          padding: "10px 20px",
+          margin: "10px",
+          backgroundColor: "green",
+          color: "white",
+          border: "none",
+          borderRadius: "5px"
+        }}
+      >
+        Increment
+      </button>
 
-// App Component
-function App() {
-  return (
-    <div style={{ textAlign: "center" }}>
-      <h1>React Components using JSX and Props</h1>
+      <button
+        onClick={decrement}
+        style={{
+          padding: "10px 20px",
+          margin: "10px",
+          backgroundColor: "red",
+          color: "white",
+          border: "none",
+          borderRadius: "5px"
+        }}
+      >
+        Decrement
+      </button>
 
-      <Student
-        name="Rahul Sharma"
-        course="BCA"
-        marks="85"
-      />
+      <button
+        onClick={reset}
+        style={{
+          padding: "10px 20px",
+          margin: "10px",
+          backgroundColor: "blue",
+          color: "white",
+          border: "none",
+          borderRadius: "5px"
+        }}
+      >
+        Reset
+      </button>
 
-      <Student
-        name="Priya Singh"
-        course="MCA"
-        marks="92"
-      />
-
-      <Student
-        name="Amit Verma"
-        course="B.Tech"
-        marks="78"
-      />
     </div>
   );
 }
