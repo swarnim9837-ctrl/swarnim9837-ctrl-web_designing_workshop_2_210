@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BuySphere - Your Shopping Destination</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f8f9fa;
+            color: #333;
+        }
+
+        .header {
+            background: #1a1a1a;
+            padding: 15px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+        }
+
+        .logo {
+            font-size: 36px;
+            font-weight: 800;
+            color: #ffffff;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .logo::before {
+            content: '🛒';
+            font-size: 32px;
+        }
+
+        .logo span {
+            color: #a0a0a0;
+            font-weight: 300;
+        }
+
+        .nav {
+            display: flex;
+            gap: 5px;
+            align-items: center;
+            background: #2a2a2a;
+            padding: 5px;
+            border-radius: 25px;
+        }
+
+        .nav a {
+            color: #cccccc;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            transition: all 0.3s;
+            padding: 10px 20px;
+            border-radius: 20px;
+        }
+
+        .nav a:hover {
+            background: #3a3a3a;
+            color: #ffffff;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 20px;
+            opacity: 0.95;
+            margin-bottom: 30px;
+        }
+
+        .search-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box {
+            display: flex;
+            background: white;
+            border-radius: 50px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        .search-box input {
+            flex: 1;
+            border: none;
+            padding: 15px 25px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-box button {
+            background: #4a5568;
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 600;
+            transition: background 0.3s;
+        }
+
+        .search-box button:hover {
+            background: #2d3748;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #2c3e50;
+            text-align: center;
+        }
+
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+            margin-bottom: 60px;
+        }
+
+        .category-box {
+            background: white; ;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .category-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.12);
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #4a5568;
+        }
+
+        .category-icon {
+            font-size: 28px;
+        }
+
+        .category-title {
+            font-size: 20px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .card {
+            background: #f8f9fa;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 1px 8px rgba(0,0,0,0.06);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 275px; 
+            object-fit: contain;
+            background: white;
+            padding: 15px;
+        }
+
+        .card-body {
+            padding: 12px;
+        }
+
+        .card-title {
+            font-size: 14px;
+            color: #2c3e50;
+            margin-bottom: 6px;
+            font-weight: 600;
+            min-height: 32px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-text {
+            font-size: 12px;
+            color: #7f8c8d;
+            line-height: 1.4;
+            margin-bottom: 10px;
+            min-height: 34px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 10px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .price {
+            font-size: 18px;
+            color: #4a5568;
+            font-weight: bold;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #4a5568 0%, #2d3748 100%);
+            color: white;
+            border: none;
+            padding: 8px 14px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: transform 0.3s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        footer {
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 80px;
+        }
+
+        footer h3 {
+            margin-bottom: 15px;
+            font-size: 24px;
+        }
+
+        footer p {
+            color: #bdc3c7;
+            margin-top: 20px;
+        }
+
+        footer a {
+            color: #bdc3c7;
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: #95a5a6;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .nav {
+                display: none;
+            }
+
+            .categories {
+                grid-template-columns: 1fr;
+            }
+
+            .products {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">Buy<span>Sphere</span></div>
+            <div class="nav">
+                <a href="#">Home</a>
+                <a href="#">Products</a>
+                <a href="#">Deals</a>
+                <a href="#">Contact</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <h1>Welcome to BuySphere</h1>
+        <p>Discover amazing products at unbeatable prices</p>
+        <div class="search-container">
+            <div class="search-box">
+                <input type="text" placeholder="Search for products...">
+                <button>Search</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2 class="section-title">Shop by Category</h2>
+        
+        <div class="categories">
+
+            <div class="category-box">
+                <div class="category-header">
+                    <span class="category-icon">💻</span>
+                    <h3 class="category-title">Electronics</h3>
+                </div>
+                <div class="products">
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/511KclHIutL._SY300_SX300_QL70_FMwebp_.jpg" alt="Laptop">
+                        <div class="card-body">
+                            <h3 class="card-title">HP 15s Intel Core i5 12th Gen Laptop</h3>
+                            <p class="card-text">15.6" FHD | 16GB RAM | 512GB SSD</p>
+                            <div class="card-footer">
+                                <span class="price"> ₹79,900</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41ASR9mjFTL._SY300_SX300_QL70_FMwebp_.jpg" alt="Mobile">
+                        <div class="card-body">
+                            <h3 class="card-title">Samsung Galaxy S24 5G</h3>
+                            <p class="card-text">6.8" AMOLED | 256GB | 50MP Camera</p>
+                            <div class="card-footer">
+                                <span class="price"> ₹24,999</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41eqVL6WYiL._SY300_SX300_QL70_FMwebp_.jpg" alt="Tablet">
+                        <div class="card-body">
+                            <h3 class="card-title">Apple iPad Air 11" M2 Chip</h3>
+                            <p class="card-text">128GB WiFi | Liquid Retina Display</p>
+                            <div class="card-footer">
+                                <span class="price">₹84,900</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41po0Y8FRnL._SX300_SY300_QL70_FMwebp_.jpg" alt="Camera">
+                        <div class="card-body">
+                            <h3 class="card-title">Canon EOS R50 Mirrorless Camera</h3>
+                            <p class="card-text">24.2MP | 4K Video | RF-S 18-45mm Lens</p>
+                            <div class="card-footer">
+                                <span class="price"> ₹59,990</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-box">
+                <div class="category-header">
+                    <span class="category-icon">👟</span>
+                    <h3 class="category-title">Fashion & Accessories</h3>
+                </div>
+                <div class="products">
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/61RFlIUeaIL._SY695_.jpg" alt="Shoes">
+                        <div class="card-body">
+                            <h3 class="card-title">Nike Air Max 270 Running Shoes</h3>
+                            <p class="card-text">Men's Sportwear | Breathable Mesh</p>
+                            <div class="card-footer">
+                                <span class="price"> ₹1,099</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/51ATf8ajDYL._SY695_.jpg" alt="Backpack">
+                        <div class="card-body">
+                            <h3 class="card-title">Crystal Bracelets for Women</h3>
+                            <p class="card-text">USB Charging Port | Water Resistant</p>
+                            <div class="card-footer">
+                                <span class="price">₹499</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41fZhVTUuAL._SX679_.jpg" alt="Sunglasses">
+                        <div class="card-body">
+                            <h3 class="card-title">Ray-Ban Aviator Classic Sunglasses</h3>
+                            <p class="card-text">UV Protection | Polarized Lens | Unisex</p>
+                            <div class="card-footer">
+                                <span class="price">₹809 </span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/61IX4iR5P0L._SX679_.jpg" alt="Watch">
+                        <div class="card-body">
+                            <h3 class="card-title">Fossil Grant Chronograph Watch</h3>
+                            <p class="card-text">Stainless Steel | Leather Band | 44mm</p>
+                            <div class="card-footer">
+                                <span class="price">₹9,495</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-box">
+                <div class="category-header">
+                    <span class="category-icon">⌚</span>
+                    <h3 class="category-title">Wearables</h3>
+                </div>
+                <div class="products">
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/418tFshxkJL._SY300_SX300_QL70_FMwebp_.jpg" alt="Smartwatch">
+                        <div class="card-body">
+                            <h3 class="card-title">Apple Watch Series 9 GPS</h3>
+                            <p class="card-text">45mm | Always-On Display | Fitness Tracking</p>
+                            <div class="card-footer">
+                                <span class="price">₹2,249</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/511nTkPHdJL._SX522_.jpg" alt="Watch">
+                        <div class="card-body">
+                            <h3 class="card-title">Casio G-Shock Digital Watch</h3>
+                            <p class="card-text">Shock Resistant | 200M Water Resistant</p>
+                            <div class="card-footer">
+                                <span class="price">₹2,195</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/61BoaOUf+KL._SX679_.jpg" alt="Fitness Band">
+                        <div class="card-body">
+                            <h3 class="card-title">Fitbit Charge 6 Fitness Tracker</h3>
+                            <p class="card-text">Heart Rate Monitor | 7 Days Battery</p>
+                            <div class="card-footer">
+                                <span class="price">₹1,799</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41sHRWXCfvL._SY300_SX300_QL70_FMwebp_.jpg" alt="Smartwatch">
+                        <div class="card-body">
+                            <h3 class="card-title">Samsung Galaxy Watch 6 Classic</h3>
+                            <p class="card-text">43mm | AMOLED | Rotating Bezel</p>
+                            <div class="card-footer">
+                                <span class="price">₹1,199</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-box">
+                <div class="category-header">
+                    <span class="category-icon">🎧</span>
+                    <h3 class="category-title">Audio</h3>
+                </div>
+                <div class="products">
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41VFJcUHTvL._SY300_SX300_QL70_FMwebp_.jpg" alt="Headphones">
+                        <div class="card-body">
+                            <h3 class="card-title">Sony WH-1000XM5 Wireless Headphones</h3>
+                            <p class="card-text">Premium ANC | 30H Battery | Hi-Res Audio</p>
+                            <div class="card-footer">
+                                <span class="price">₹1,599</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41mRXpgXUuL._SY300_SX300_QL70_FMwebp_.jpg" alt="Earbuds">
+                        <div class="card-body">
+                            <h3 class="card-title">Apple AirPods Pro 2nd Gen</h3>
+                            <p class="card-text">Active Noise Cancellation | MagSafe Case</p>
+                            <div class="card-footer">
+                                <span class="price">₹2,499</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/31MyoabpPZL._SY300_SX300_QL70_FMwebp_.jpg" alt="Neckband">
+                        <div class="card-body">
+                            <h3 class="card-title">OnePlus Bullets Wireless Z2</h3>
+                            <p class="card-text">30H Playback | Fast Charge | Bass Boost</p>
+                            <div class="card-footer">
+                                <span class="price">₹1,799</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/61pmuSFKTML._SX522_.jpg" alt="Speaker">
+                        <div class="card-body">
+                            <h3 class="card-title">JBL Charge 5 Portable Speaker</h3>
+                            <p class="card-text">Waterproof | 20H Battery | PartyBoost</p>
+                            <div class="card-footer">
+                                <span class="price">₹1,999</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="category-box">
+                <div class="category-header">
+                    <span class="category-icon">🎨</span>
+                    <h3 class="category-title">Home Decor</h3>
+                </div>
+                <div class="products">
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/51CV4+O5sNL._SY300_SX300_QL70_FMwebp_.jpg"" alt="Wall Art">
+                        <div class="card-body">
+                            <h3 class="card-title">Abstract Canvas Wall Art Set 3 Panel</h3>
+                            <p class="card-text">Modern Design | HD Print | Ready to Hang</p>
+                            <div class="card-footer">
+                                <span class="price">₹1,299</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/61dv4NuDCIL._SX522_.jpg" alt="Table Lamp">
+                        <div class="card-body">
+                            <h3 class="card-title">Modern Minimalist Table Lamp</h3>
+                            <p class="card-text">Wood Base | Fabric Shade | E27 Socket</p>
+                            <div class="card-footer">
+                                <span class="price">₹2600</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41q2qvjeD7L._SY300_SX300_QL70_FMwebp_.jpg" alt="Vase">
+                        <div class="card-body">
+                            <h3 class="card-title">Ceramic Decorative Flower Vase</h3>
+                            <p class="card-text">Nordic Style | White Matte Finish | 10"</p>
+                            <div class="card-footer">
+                                <span class="price">₹1649</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41i8J6M3D3S._SY300_SX300_QL70_FMwebp_.jpg" alt="Clock">
+                        <div class="card-body">
+                            <h3 class="card-title">Vintage Round Wall Clock 12"</h3>
+                            <p class="card-text">Silent Movement | Roman Numerals</p>
+                            <div class="card-footer">
+                                <span class="price">₹899</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="category-box">
+                <div class="category-header">
+                    <span class="category-icon">🏠</span>
+                    <h3 class="category-title">Home Appliances</h3>
+                </div>
+                <div class="products">
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41Kd4rooM4L._SY300_SX300_QL70_FMwebp_.jpg" alt="Blender">
+                        <div class="card-body">
+                            <h3 class="card-title">Titan Dark Brown Wood Finish Analog Clock</h3>
+                            <p class="card-text">Product description goes here</p>
+                            <div class="card-footer">
+                                <span class="price">₹3,699</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41K+zLZZq0L._SY300_SX300_QL70_FMwebp_.jpg" alt="Coffee Maker">
+                        <div class="card-body">
+                            <h3 class="card-title">Bajaj Rex Mixer Grinder</h3>
+                            <p class="card-text">Product description goes here</p>
+                            <div class="card-footer">
+                                <span class="price"> ₹3,806</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/316dT3guO4L._SY300_SX300_QL70_FMwebp_.jpg" alt="Vacuum">
+                        <div class="card-body">
+                            <h3 class="card-title">Philips Drip Coffee Maker</h3>
+                            <p class="card-text">Product description goes here</p>
+                            <div class="card-footer">
+                                <span class="price"> ₹791 </span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img class="card-img" src="https://m.media-amazon.com/images/I/41tClpDm8FL._SY300_SX300_QL70_FMwebp_.jpg" alt="Iron">
+                        <div class="card-body">
+                            <h3 class="card-title">Philips Steam Iron</h3>
+                            <p class="card-text">Product description goes here</p>
+                            <div class="card-footer">
+                                <span class="price">₹1,295</span>
+                                <button class="btn">Add to Cart</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <footer>
+        <h3>BuySphere</h3>
+        <div>
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms</a>
+        </div>
+        <p>© 2024 BuySphere. All rights reserved.</p>
+    </footer>
+
+</body>
+</html>
