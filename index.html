@@ -2,27 +2,370 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amazon Clone</title>
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  />
+    <link rel="stylesheet" href="amazon.css">
 
-  <title>Registration Form with API Fetching</title>
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 
 <body>
 
-  <!-- React Root Element -->
-  <div id="root"></div>
+    <!-- LOADER -->
 
-  <!-- Main React File -->
-  <script
-    type="module"
-    src="/src/main.jsx"
-  ></script>
+    <div id="loader">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- NAVBAR -->
+
+    <nav class="navbar">
+
+        <div class="logo">
+            amazon<span>.in</span>
+        </div>
+
+        <div class="location">
+            <small>Deliver to</small>
+            <strong>India</strong>
+        </div>
+
+        <div class="search-bar">
+
+            <select>
+                <option>All</option>
+                <option>Electronics</option>
+                <option>Fashion</option>
+                <option>Books</option>
+            </select>
+
+            <input type="text" id="searchInput" placeholder="Search Amazon">
+
+            <button onclick="searchProducts()">
+                <i class="fa-solid fa-magnifying-glass"></i>
+            </button>
+
+        </div>
+
+        <div class="nav-links">
+
+            <div>
+                <small>Hello, Sign in</small>
+                <strong>Accounts</strong>
+            </div>
+
+            <div>
+                <small>Returns</small>
+                <strong>& Orders</strong>
+            </div>
+
+        </div>
+
+        <div class="cart" id="cartBtn">
+
+            <i class="fa-solid fa-cart-shopping"></i>
+
+            <span id="cartCount">0</span>
+
+        </div>
+
+    </nav>
+
+    <!-- MENU -->
+
+    <div class="menu">
+
+        <div>☰ All</div>
+        <div>Today's Deals</div>
+        <div>Electronics</div>
+        <div>Fashion</div>
+        <div>Books</div>
+        <div>Mobiles</div>
+        <div>Prime</div>
+
+    </div>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <img src="bg_image.jpeg" alt="Hero Image">
+
+        <div class="hero-overlay">
+
+            <h1>MEGA SALE</h1>
+
+            <p>Up to 70% Off</p>
+
+        </div>
+
+    </section>
+    
+<!-- CATEGORY SECTON -->
+
+<section class="categories">
+
+    <div class="cat-box">
+        <img src="https://images.pexels.com/photos/404280/pexels-photo-404280.jpeg?w=500">
+        <h3>Mobiles</h3>
+    </div>
+
+    <div class="cat-box">
+        <img src="https://images.pexels.com/photos/934070/pexels-photo-934070.jpeg?w=500">
+        <h3>fashion</h3>
+    </div>
+
+    <div class="cat-box">
+        <img src="https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg?w=500">
+        <h3>shoes</h3>
+    </div>
+
+    <div class="cat-box">
+        <img src="https://images.pexels.com/photos/298863/pexels-photo-298863.jpeg?w=500">
+        <h3>mens</h3>
+    </div>
+
+</section>
+
+<!-- BIG SALE BANNER -->
+
+<section class="big-sale">
+
+    <div class="sale-text">
+
+        <h1>Today's Biggest Deals</h1>
+
+        <p>Up to 80% OFF</p>
+
+        <button>Shop Now</button>
+
+    </div>
+
+</section>
+
+<!-- EXTRA PRODUCTS -->
+
+<section class="products">
+
+    <div class="card">
+
+        <img src="https://images.pexels.com/photos/3394650/pexels-photo-3394650.jpeg?w=500">
+
+        <h3>Headphones</h3>
+
+        <div class="rating">★★★★★</div>
+
+        <p class="price">₹1999</p>
+
+        <button onclick="addToCart('Headphones',1999)">
+            Add to Cart
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <img src="https://images.pexels.com/photos/90946/pexels-photo-90946.jpeg?w=500">
+
+        <h3>Camera</h3>
+
+        <div class="rating">★★★★☆</div>
+
+        <p class="price">₹45999</p>
+
+        <button onclick="addToCart('Camera',45999)">
+            Add to Cart
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <img src="https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?w=500">
+
+        <h3>hard-disk</h3>
+
+        <div class="rating">★★★★☆</div>
+
+        <p class="price">₹14999</p>
+
+        <button onclick="addToCart('Sofa',14999)">
+            Add to Cart
+        </button>
+
+    </div>
+
+    <div class="card">
+
+        <img src="https://images.pexels.com/photos/965989/pexels-photo-965989.jpeg?w=500">
+
+        <h3>Perfume</h3>
+
+        <div class="rating">★★★★★</div>
+
+        <p class="price">₹899</p>
+
+        <button onclick="addToCart('Perfume',899)">
+            Add to Cart
+        </button>
+
+    </div>
+
+</section>
+
+<!-- ACCOUNT DROPDOWN -->
+
+<div class="account-dropdown">
+
+    <h3>Your Account</h3>
+
+    <p>Your Orders</p>
+    <p>Your Wishlist</p>
+    <p>Prime Membership</p>
+    <p>Settings</p>
+    <p>Logout</p>
+
+</div>
+```
+
+
+    <!-- PRODUCTS -->
+
+    <section class="products">
+
+        <div class="card">
+
+            <img src="https://images.pexels.com/photos/186037/pexels-photo-186037.jpeg?w=500">
+
+            <h3>Shoes</h3>
+
+            <div class="rating">
+                ★★★★☆
+            </div>
+
+            <p class="price">₹1499</p>
+
+            <button onclick="addToCart('Shoes',1499)">
+                Add to Cart
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <img src="https://images.pexels.com/photos/5424914/pexels-photo-5424914.jpeg?w=500">
+
+            <h3>Fashion</h3>
+
+            <div class="rating">
+                ★★★★★
+            </div>
+
+            <p class="price">₹999</p>
+
+            <button onclick="addToCart('Fashion',999)">
+                Add to Cart
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <img src="https://images.pexels.com/photos/15592023/pexels-photo-15592023.jpeg?w=500">
+
+            <h3>Gaming</h3>
+
+            <div class="rating">
+                ★★★★★
+            </div>
+
+            <p class="price">₹2999</p>
+
+            <button onclick="addToCart('Gaming',2999)">
+                Add to Cart
+            </button>
+
+        </div>
+
+        <div class="card">
+
+            <img src="https://images.pexels.com/photos/32942764/pexels-photo-32942764.jpeg?w=500">
+
+            <h3>Watch</h3>
+
+            <div class="rating">
+                ★★★★☆
+            </div>
+
+            <p class="price">₹599</p>
+
+            <button onclick="addToCart('Watch',599)">
+                Add to Cart
+            </button>
+
+        </div>
+
+    </section>
+
+    <!-- CART SIDEBAR -->
+
+    <div class="cart-sidebar" id="sidebar">
+
+        <h2>Your Cart</h2>
+
+        <div id="cartItems"></div>
+
+    </div>
+
+    <!-- TOAST -->
+
+    <div class="toast" id="toast"></div>
+
+    <!-- FOOTER -->
+
+    <footer>
+
+        <div class="footer-top">
+            Back to top
+        </div>
+
+        <div class="footer-content">
+
+            <div>
+                <h4>Get to Know Us</h4>
+                <p>About</p>
+                <p>Careers</p>
+                <p>Press</p>
+            </div>
+
+            <div>
+                <h4>Connect</h4>
+                <p>Instagram</p>
+                <p>Facebook</p>
+                <p>Twitter</p>
+            </div>
+
+            <div>
+                <h4>Help</h4>
+                <p>Returns</p>
+                <p>Orders</p>
+                <p>Support</p>
+            </div>
+
+        </div>
+
+        <div class="copyright">
+            © 2026 Amazon Clone
+        </div>
+
+    </footer>
+
+    <script src="amazon.js"></script>
 
 </body>
 
 </html>
+```
