@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Countdown Timer</title>
+    <style>
+        
+        body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        }
+
+        .container {
+        background: white;
+        padding: 30px;
+        width: 380px;
+        border-radius: 15px;
+        text-align: center;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+        color: #333;
+        margin-bottom: 20px;
+    }
+
+input {
+    width: 80%;
+    padding: 12px;
+    border: 2px solid #667eea;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    background: #667eea;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #764ba2;
+    transform: scale(1.05);
+}
+
+#result {
+    margin-top: 20px;
+    font-size: 32px;
+    font-weight: bold;
+    color: #667eea;
+}
+
+        .container {
+            background: white;
+            width: 350px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px gray;
+        }
+
+        input {
+            padding: 8px;
+            width: 120px;
+            font-size: 16px;
+        }
+        
+        
+        button {
+            padding: 8px 15px;
+            font-size: 16px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: blue;
+        }
+          
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Countdown Timer</h2>
+
+        <input type="number" id="num" placeholder="Enter Number">
+        <button onclick="startCountdown()">Start</button>
+
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function startCountdown() {
+            let n = parseInt(document.getElementById("num").value);
+            let result = document.getElementById("result");
+
+            let timer = setInterval(function () {
+                result.innerHTML = n;
+
+                n--;
+
+                if (n < 1) {
+                    clearInterval(timer);
+                    result.innerHTML += "<br>Time's Up!";
+                }
+            }, 1000);
+        }
+    </script>
+
+</body>
+</html>
